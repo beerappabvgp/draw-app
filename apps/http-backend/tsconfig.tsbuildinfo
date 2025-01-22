@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/controllers/roomController.ts","./src/controllers/userController.ts","./src/middlewares/authenticate.ts","./src/middlewares/validateSchema.ts","./src/routes/roomRoutes.ts","./src/routes/userRoutes.ts","./src/schema/user.ts","./src/utils/prisma.ts"],"version":"5.7.3"}
