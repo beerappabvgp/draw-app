@@ -1,4 +1,5 @@
-import { prisma } from "../utils/prisma";
+// import { prisma } from "../utils/prisma";
+import  { prismaClient } from "@repo/db/client";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -10,7 +11,7 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
     const { email, password } = req.body;
 
     // Check if the user already exists
-    const existingUser = await prisma.user.findUnique({ where: { email } });
+    const existingUser = await prismaClient.user.findUnique({ where: { email } });
     if (existingUser) {
       res.status(400).json({ error: "User already exists" });
       return;
@@ -20,7 +21,7 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create the user in the database
-    const user = await prisma.user.create({
+    const user = await prismaClient.user.create({
       data: { email, password: hashedPassword },
     });
 
@@ -39,7 +40,7 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
 export const signIn = async (req: Request, res: Response) => {
     try {
       const { email, password } = req.body;
-      const user = await prisma.user.findUnique({ where: { email } });
+      const user = await prismaClient.user.findUnique({ where: { email } });
       if (!user) {
         res.status(404).json({ error: "User not found" });
         return;

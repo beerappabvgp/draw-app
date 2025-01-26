@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -b",
-    "start": "node ./dist/server.js",
+    "start": "nodemon ./dist/server.js",
     "dev": "pnpm run build && pnpm run start"
   },
   "keywords": [],
@@ -14,8 +14,11 @@
   "description": "",
   "dependencies": {
     "@repo/typescript-config": "workspace:*",
+    "@types/redis": "^4.0.11",
     "@types/ws": "^8.5.13",
     "dotenv": "^16.4.7",
+    "nodemon": "^3.1.9",
+    "redis": "^4.7.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
     "ws": "^8.18.0"
